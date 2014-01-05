@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PAgesController do
+describe PagesController do
 
   describe "GET 'home'" do
     it "returns http success" do
