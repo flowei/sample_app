@@ -1,6 +1,6 @@
 module PagesHelper
   
-  # Retourne un titre basé sur la page
+  # Retourne un titre bas sur la page
   def title
     title_base = "Simple App du Tutoriel Ruby on Rails"
     if @title.nil?
