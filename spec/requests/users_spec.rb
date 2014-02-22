@@ -36,5 +36,4 @@ describe "Users" do
             end.should change(User, :count).by(1)
           end
         end
-        
 end
