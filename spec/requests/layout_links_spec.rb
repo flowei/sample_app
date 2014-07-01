@@ -21,4 +21,35 @@ describe "LayoutLinks" do
     get '/signup'
     response.should have_selector('title', :content => "Sign Up")
   end
+  
+  describe "when not identified" do
+    it "should have connection link" do
+      visit root_path
+      response.should have_selector("a", :href => signin_path,
+                                         :content => "Sign in")
+    end
+  end
+  
+  describe "when identified" do
+    
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      visit signin_path
+      fill_in :email, :with => @user.email
+      fill_in :password, :with => @user.password
+      click_button
+    end
+    
+    it "should have a deconnection link" do
+      visit root_path
+      response.should have_selector("a", :href => signout_path,
+                                         :content => "Sign out")
+    end
+    
+    it "should have profile link" do
+      visit root_path
+      response.should have_selector("a", :href => user_path(@user),
+                                         :content => "Profil")
+    end
+  end
 end
